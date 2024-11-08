@@ -1784,9 +1784,9 @@ hipError_t hipMemcpyParam2DAsync(const hip_Memcpy2D *PCopy,
   CHIP_CATCH
 }
 
-//*****************************************************************************
-//*****************************************************************************
-//*****************************************************************************
+// *****************************************************************************
+// *****************************************************************************
+// *****************************************************************************
 
 // In new HIP launch API, the compiler (clang) emits approximately
 // the following (pseudo) code for a_kernel<<<G, B, M, S>>>(A, B, ...)
@@ -2886,12 +2886,12 @@ static inline hipError_t hipHostMallocInternal(void **Ptr, size_t Size,
   void *RetVal = ActiveDev->getContext()->allocate(
       Size, 0x1000, hipMemoryType::hipMemoryTypeHost, FlagsParsed);
   ERROR_IF((RetVal == nullptr), hipErrorMemoryAllocation);
-
+/*
   int PageLockSuccess = mlock(RetVal, Size);
   if (PageLockSuccess != 0)
     logCritical("Page Lock failure {}", errno);
   assert(PageLockSuccess == 0 && "Failed to page lock memory");
-
+*/
   *Ptr = RetVal;
   return hipSuccess;
 }
