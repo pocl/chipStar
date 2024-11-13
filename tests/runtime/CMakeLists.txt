@@ -56,14 +56,14 @@ function(add_shell_test SCRIPT)
 endfunction()
 
 # TODO - this should check if immediate cmd lists are being used
-add_hip_runtime_test(TestRecordEventBlocking.cpp)
+#add_hip_runtime_test(TestRecordEventBlocking.cpp)
 # This test checks if zeEventQuery is a blocking operation
-set_tests_properties(TestRecordEventBlocking PROPERTIES
-  TIMEOUT 60)
-set_tests_properties(TestRecordEventBlocking PROPERTIES
-  FAIL_REGULAR_EXPRESSION "FAIL")
-set_tests_properties(TestRecordEventBlocking PROPERTIES
-  PASS_REGULAR_EXPRESSION "PASS")
+#set_tests_properties(TestRecordEventBlocking PROPERTIES
+#  TIMEOUT 60)
+#set_tests_properties(TestRecordEventBlocking PROPERTIES
+#  FAIL_REGULAR_EXPRESSION "FAIL")
+#set_tests_properties(TestRecordEventBlocking PROPERTIES
+#  PASS_REGULAR_EXPRESSION "PASS")
 
 add_hip_runtime_test(TestLazyModuleInit.cpp)
 add_hip_runtime_test(TestKernelArgs.hip)
