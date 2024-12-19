@@ -62,16 +62,19 @@ static thread_local cl_int clStatus;
 #ifndef cl_ext_buffer_device_address
 #define cl_ext_buffer_device_address
 
+// clSetKernelExecInfo
 #ifndef CL_KERNEL_EXEC_INFO_DEVICE_PTRS_EXT
-#define CL_KERNEL_EXEC_INFO_DEVICE_PTRS_EXT 0x11B8
+#define CL_KERNEL_EXEC_INFO_DEVICE_PTRS_EXT 0x5002
 #endif
 
+// clCreateBuffer flag
+#ifndef CL_MEM_DEVICE_PRIVATE_ADDRESS_EXT
+#define CL_MEM_DEVICE_PRIVATE_ADDRESS_EXT 0x5000
+#endif
+
+// clGetMemObjectInfo
 #ifndef CL_MEM_DEVICE_ADDRESS_EXT
-#define CL_MEM_DEVICE_ADDRESS_EXT (1ul << 31)
-#endif
-
-#ifndef CL_MEM_DEVICE_PTR_EXT
-#define CL_MEM_DEVICE_PTR_EXT 0xff01
+#define CL_MEM_DEVICE_ADDRESS_EXT 0x5001
 #endif
 
 typedef cl_ulong cl_mem_device_address_EXT;
