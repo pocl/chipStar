@@ -438,6 +438,9 @@ ANY:
     Unit_hipGraphAddMemcpyNodeToSymbol_MemcpyToSymbolNodeWithKernel: 'Failed'
     Unit_hipGraphMemcpyNodeSetParamsFromSymbol_Functional: 'Failed'
     Unit_hipGraphMemcpyNodeSetParamsToSymbol_Functional: 'Failed'
+    Unit_hipHostRegister_Negative - int: 'Failed'
+    Unit_hipHostRegister_Negative - float: 'Failed'
+    Unit_hipHostRegister_Negative - double: 'Failed'
   OPENCL_GPU:
     Unit_hipEvent: 'calling hipEventGetElapsed time on (start, start) and (stop, stop) causes subsequent call to be ready instread of hipErrorNotReady'
   OPENCL_POCL:
