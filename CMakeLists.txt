@@ -624,7 +624,8 @@ set(CHIP_DEBUG_BUILD 0)
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   set(CHIP_DEBUG_BUILD 1)
 endif()
-configure_file(chipStarConfig.hh.in include/chipStarConfig.hh @ONLY)
+configure_file(chipStarConfig.hh.in "${CMAKE_BINARY_DIR}/include/chipStarConfig.hh.new" @ONLY)
+file(COPY_FILE "${CMAKE_BINARY_DIR}/include/chipStarConfig.hh.new" "${CMAKE_BINARY_DIR}/include/chipStarConfig.hh" ONLY_IF_DIFFERENT)
 
 # PROJECT CONFIGURATION HEADER
 # =============================================================================
@@ -658,13 +659,17 @@ add_to_config(_versionInfo HIP_VERSION_PATCH "${HIP_VERSION_PATCH}")
 add_to_config(_versionInfo HIP_VERSION_GITHASH "${HIP_VERSION_GITHASH}")
 
 # Generate and install .hipVersion file.
-file(WRITE ${PROJECT_BINARY_DIR}/bin/.hipVersion ${_versionInfo})
+file(WRITE ${PROJECT_BINARY_DIR}/bin/.hipVersion.new ${_versionInfo})
+file(COPY_FILE ${PROJECT_BINARY_DIR}/bin/.hipVersion.new ${PROJECT_BINARY_DIR}/bin/.hipVersion ONLY_IF_DIFFERENT)
 install(FILES ${PROJECT_BINARY_DIR}/bin/.hipVersion DESTINATION bin)
 
-file(COPY ${CMAKE_SOURCE_DIR}/HIP/include/
-     DESTINATION ${CMAKE_BINARY_DIR}/include)
-file(COPY ${CMAKE_SOURCE_DIR}/include/
-     DESTINATION ${CMAKE_BINARY_DIR}/include)
+if(NOT IS_DIRECTORY ${CMAKE_BINARY_DIR}/include/hip)
+  file(COPY ${CMAKE_SOURCE_DIR}/HIP/include/hip DESTINATION ${CMAKE_BINARY_DIR}/include)
+endif()
+file(CREATE_LINK ${CMAKE_SOURCE_DIR}/include/CL ${CMAKE_BINARY_DIR}/include/CL SYMBOLIC)
+file(CREATE_LINK ${CMAKE_SOURCE_DIR}/include/cuspv ${CMAKE_BINARY_DIR}/include/cuspv SYMBOLIC)
+file(CREATE_LINK ${CMAKE_SOURCE_DIR}/include/spdlog ${CMAKE_BINARY_DIR}/include/spdlog SYMBOLIC)
+
 if(CHIP_BUILD_HIPBLAS)
   file(COPY ${CMAKE_SOURCE_DIR}/H4I-HipBLAS/include/
        DESTINATION ${CMAKE_BINARY_DIR}/include)
@@ -760,7 +765,9 @@ set(_versionInfoHeader
 #define __HIP_HAS_GET_PCH ${_pchStatus}\n
 #endif\n
 ")
-file(WRITE "${PROJECT_BINARY_DIR}/include/hip/hip_version.h" ${_versionInfoHeader})
+file(WRITE "${PROJECT_BINARY_DIR}/include/hip/hip_version.h.new" ${_versionInfoHeader})
+file(COPY_FILE "${PROJECT_BINARY_DIR}/include/hip/hip_version.h.new" "${PROJECT_BINARY_DIR}/include/hip/hip_version.h" ONLY_IF_DIFFERENT)
+
 install(FILES "${PROJECT_BINARY_DIR}/include/hip/hip_version.h"
   DESTINATION ${INCLUDE_INSTALL_DIR}/hip)
 

@@ -441,6 +441,7 @@ ANY:
     Unit_hipHostRegister_Negative - int: 'Failed'
     Unit_hipHostRegister_Negative - float: 'Failed'
     Unit_hipHostRegister_Negative - double: 'Failed'
+    cucc-std-plus-c-input: ''
   OPENCL_GPU:
     Unit_hipEvent: 'calling hipEventGetElapsed time on (start, start) and (stop, stop) causes subsequent call to be ready instread of hipErrorNotReady'
   OPENCL_POCL:
