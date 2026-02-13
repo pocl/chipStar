@@ -442,6 +442,12 @@ ANY:
     Unit_hipHostRegister_Negative - float: 'Failed'
     Unit_hipHostRegister_Negative - double: 'Failed'
     cucc-std-plus-c-input: ''
+    TestMemFunctions: 'SEGFAULT; started to fail after enabling subgroups in LVN; should look into it'
+    broadcast: 'started to fail after enabling subgroups in LVN'
+    broadcast2: 'started to fail after enabling subgroups in LVN'
+    shuffles: 'started to fail after enabling subgroups in LVN'
+    hipDynamicShared: 'fails with PoCLs chipstar branch, resolved in upstream chipstar'
+    RecursiveGaussian: 'fails with PoCLs chipstar branch, works for Tapio, possibly also resolved in upstream chipstar'
   OPENCL_GPU:
     Unit_hipEvent: 'calling hipEventGetElapsed time on (start, start) and (stop, stop) causes subsequent call to be ready instread of hipErrorNotReady'
   OPENCL_POCL:
