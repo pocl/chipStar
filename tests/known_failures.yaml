@@ -446,6 +446,7 @@ ANY:
     broadcast: 'started to fail after enabling subgroups in LVN'
     broadcast2: 'started to fail after enabling subgroups in LVN'
     shuffles: 'started to fail after enabling subgroups in LVN'
+    shuffle: 'started to fail after enabling subgroups in LVN'
     hipDynamicShared: 'fails with PoCLs chipstar branch, resolved in upstream chipstar'
     RecursiveGaussian: 'fails with PoCLs chipstar branch, works for Tapio, possibly also resolved in upstream chipstar'
   OPENCL_GPU:
